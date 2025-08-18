@@ -114,9 +114,9 @@
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
 							<h1>Anto &amp; Lucio</h1>
-							<h2>11 . 10 . 2025</h2>
+							<p><span style="border-top: 2px solid #fff; border-bottom: 2px solid #fff; padding: 5px 0px; color: white; font-size: 2rem;"> 11 . 10 . 2025 </span></p>
 							<div id="simply-countdown-losange" class="simply-countdown simply-countdown-one"></div>
-							<p><a href="#" class="btn btn-default btn-sm">Guarda la fecha</a></p>
+							<p><a href="#" id="guardar" class="btn btn-default btn-sm">Guarda la fecha</a></p>
 						</div>
 					</div>
 				</div>
@@ -539,7 +539,7 @@
 						<div class="col-md-4 col-sm-4">
 							<div class="form-group">
 								<label for="name" class="sr-only">Nombre</label>
-								<input type="name" class="form-control" id="name" placeholder="Name">
+								<input type="name" class="form-control" id="name" placeholder="Nombre">
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-4">
@@ -557,6 +557,17 @@
 		</div>
 	</div>
 
+	<footer>
+		<div id="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<h2>Anto &amp; Lucio</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 	<!--footer id="fh5co-footer" role="contentinfo">
 		<div class="container">
 
@@ -610,16 +621,6 @@
 	<script src="js/main.js"></script>
 
 	<script>
-    //var d = new Date(new Date().getTime() + 200 * 120 * 120 * 2000);
-
-    // default example
-    // simplyCountdown('.simply-countdown-one', {
-    //     year: 2025,
-    //     month: 08,
-    //     day: 19,
-		// 		hour: 21
-    // });
-
     // //jQuery example
     $('#simply-countdown-losange').simplyCountdown({
 				year: 2025,
@@ -636,6 +637,49 @@
         enableUtc: false,
 				removeZeroSeconds: true
     });
+
+		const saveToCalendar = () => {
+		    const title = "Casamiento Anto y Lucio";
+		    const startDate = "20251011T200000"; // Formato YYYYMMDDTHHMMSS
+		    const endDate = "20251012T040000";
+				const uid = Date.now() + "@antoylucio.com";
+
+				const icsContent = [
+				        "BEGIN:VCALENDAR",
+				        "VERSION:2.0",
+				        "PRODID:-//Mi Web//Calendario 1.0//ES",
+				        "BEGIN:VEVENT",
+				        `UID:${uid}`,
+				        `SUMMARY:${title}`,
+				        `DTSTART:${startDate}`,
+				        `DTEND:${endDate}`,
+				        "END:VEVENT",
+				        "END:VCALENDAR"
+				    ].join("\r\n");
+
+		    // const icsContent = `
+				// 		BEGIN:VCALENDAR
+				// 		VERSION:2.0
+				// 		BEGIN:VEVENT
+				// 		SUMMARY:${title}
+				// 		DTSTART:${startDate}
+				// 		DTEND:${endDate}
+				// 		END:VEVENT
+				// 		END:VCALENDAR`;
+
+		    const blob = new Blob([icsContent], { type: 'text/calendar' });
+		    const url = URL.createObjectURL(blob);
+
+		    const link = document.createElement('a');
+		    link.href = url;
+		    link.download = 'evento.ics';
+		    link.click();
+
+				URL.revokeObjectURL(url);
+		};
+
+		document.getElementById('guardar').addEventListener('click', saveToCalendar);
+
 </script>
 
 	</body>
