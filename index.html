@@ -70,42 +70,6 @@
 	<div class="fh5co-loader"></div>
 
 	<div id="page">
-	<!--nav class="fh5co-nav" role="navigation">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-2">
-					<div id="fh5co-logo"><a href="index.html"><strong>L &amp; A</strong></a></div>
-				</div>
-				<div class="col-xs-10 text-right menu-1">
-					<ul>
-						<li class="active"><a href="index.html">Home</a></li>
-						<li><a href="about.html">Story</a></li>
-						<li class="has-dropdown">
-							<a href="services.html">Services</a>
-							<ul class="dropdown">
-								<li><a href="#">Web Design</a></li>
-								<li><a href="#">eCommerce</a></li>
-								<li><a href="#">Branding</a></li>
-								<li><a href="#">API</a></li>
-							</ul>
-						</li>
-						<li class="has-dropdown">
-							<a href="gallery.html">Gallery</a>
-							<ul class="dropdown">
-								<li><a href="#">HTML5</a></li>
-								<li><a href="#">CSS3</a></li>
-								<li><a href="#">Sass</a></li>
-								<li><a href="#">jQuery</a></li>
-							</ul>
-						</li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-
-		</div>
-	</nav-->
-
 	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/watercolor.jpg);" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
@@ -116,7 +80,7 @@
 							<h1>Anto &amp; Lucio</h1>
 							<p><span style="border-top: 2px solid #fff; border-bottom: 2px solid #fff; padding: 5px 0px; color: white; font-size: 2rem;"> 11 . 10 . 2025 </span></p>
 							<div id="simply-countdown-losange" class="simply-countdown simply-countdown-one"></div>
-							<p><a href="#" id="guardar" class="btn btn-default btn-sm">Guarda la fecha</a></p>
+							<p><a href="#" id="addCalendar" class="btn btn-default btn-sm">Guarda la fecha</a></p>
 						</div>
 					</div>
 				</div>
@@ -626,47 +590,94 @@
 				removeZeroSeconds: true
     });
 
-		const saveToCalendar = () => {
+		// const saveToCalendar = () => {
+		//     const title = "Casamiento Anto y Lucio";
+		//     const startDate = "20251011T200000"; // Formato YYYYMMDDTHHMMSS
+		//     const endDate = "20251012T040000";
+		// 		const uid = Date.now() + "@antoylucio.com";
+		//
+		// 		const icsContent = [
+		// 		        "BEGIN:VCALENDAR",
+		// 		        "VERSION:2.0",
+		// 		        "PRODID:-//Mi Web//Calendario 1.0//ES",
+		// 		        "BEGIN:VEVENT",
+		// 		        `UID:${uid}`,
+		// 		        `SUMMARY:${title}`,
+		// 		        `DTSTART:${startDate}`,
+		// 		        `DTEND:${endDate}`,
+		// 		        "END:VEVENT",
+		// 		        "END:VCALENDAR"
+		// 		    ].join("\r\n");
+		//
+		//     const blob = new Blob([icsContent], { type: 'text/calendar' });
+		//     const url = URL.createObjectURL(blob);
+		//
+		//     const link = document.createElement('a');
+		//     link.href = url;
+		//     link.download = 'evento.ics';
+		//     link.click();
+		//
+		// 		URL.revokeObjectURL(url);
+		// };
+		//
+		// document.getElementById('guardar').addEventListener('click', saveToCalendar);
+
+		function isIOS() {
+		    return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+		}
+
+		function isAndroid() {
+		    return /Android/i.test(navigator.userAgent);
+		}
+
+		function addEvent() {
 		    const title = "Casamiento Anto y Lucio";
-		    const startDate = "20251011T200000"; // Formato YYYYMMDDTHHMMSS
+		    const startDate = "20251011T210000";
 		    const endDate = "20251012T040000";
-				const uid = Date.now() + "@antoylucio.com";
 
-				const icsContent = [
-				        "BEGIN:VCALENDAR",
-				        "VERSION:2.0",
-				        "PRODID:-//Mi Web//Calendario 1.0//ES",
-				        "BEGIN:VEVENT",
-				        `UID:${uid}`,
-				        `SUMMARY:${title}`,
-				        `DTSTART:${startDate}`,
-				        `DTEND:${endDate}`,
-				        "END:VEVENT",
-				        "END:VCALENDAR"
-				    ].join("\r\n");
+		    if (isAndroid()) {
+		        // Redirige a Google Calendar
+						const locationText = "Salón del Camping de Salud Pública";
+						const url = `https://calendar.google.com/calendar/r/eventedit?text=${encodeURIComponent(title)}&dates=${startDate}/${endDate}&location=${encodeURIComponent(locationText)}`;
+						window.open(url, "_blank");
 
-		    // const icsContent = `
-				// 		BEGIN:VCALENDAR
-				// 		VERSION:2.0
-				// 		BEGIN:VEVENT
-				// 		SUMMARY:${title}
-				// 		DTSTART:${startDate}
-				// 		DTEND:${endDate}
-				// 		END:VEVENT
-				// 		END:VCALENDAR`;
+						// const location = "https://www.google.com/maps?q=-34.969124,-57.865269";
+						// const url = `https://calendar.google.com/calendar/r/eventedit?text=${encodeURIComponent(title)}&dates=${startDate}/${endDate}&location=${encodeURIComponent(location)}`;
+		        window.open(url, "_blank");
+		    } else if (isIOS()) {
+		        // Genera .ics para iOS/Mac
+		        const uid = Date.now() + "@antoylucio.com.ar";
+		        const icsContent = [
+		            "BEGIN:VCALENDAR",
+		            "VERSION:2.0",
+		            "PRODID:-//Mi Web//Calendario 1.0//ES",
+		            "BEGIN:VEVENT",
+		            `UID:${uid}`,
+		            `SUMMARY:${title}`,
+		            `DTSTART:${startDate}`,
+		            `DTEND:${endDate}`,
+								"GEO:-34.969124;-57.865269", // latitud;longitud
+    						"LOCATION:Salón Camping de Salud Pública", // opcional, para mostrar texto
+		            "END:VEVENT",
+		            "END:VCALENDAR"
+		        ].join("\r\n");
 
-		    const blob = new Blob([icsContent], { type: 'text/calendar' });
-		    const url = URL.createObjectURL(blob);
+		        const blob = new Blob([icsContent], { type: 'text/calendar' });
+		        const url = URL.createObjectURL(blob);
 
-		    const link = document.createElement('a');
-		    link.href = url;
-		    link.download = 'evento.ics';
-		    link.click();
+		        const link = document.createElement('a');
+		        link.href = url;
+		        link.download = 'Casamiento_Anto_Lucio.ics';
+		        link.click();
+		        URL.revokeObjectURL(url);
+		    } else {
+		        // Desktop: abre Google Calendar
+		        const url = `https://calendar.google.com/calendar/r/eventedit?text=${encodeURIComponent(title)}&dates=${startDate}/${endDate}`;
+		        window.open(url, "_blank");
+		    }
+		}
 
-				URL.revokeObjectURL(url);
-		};
-
-		document.getElementById('guardar').addEventListener('click', saveToCalendar);
+		document.getElementById("addCalendar").addEventListener("click", addEvent);
 
 </script>
 
