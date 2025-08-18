@@ -681,7 +681,7 @@
 		    }
 		}
 
-		document.getElementById("addCalendar").addEventListener("click", addEvent);
+		// document.getElementById("addCalendar").addEventListener("click", addEvent);
 
 
 		document.getElementById("verUbicacionIglesia").addEventListener("click", function(e) {
@@ -693,8 +693,8 @@
 				const nombreIglesia = "María Rosa Mística";
 
 		    // URL de Google Maps con modo "directions" desde la ubicación actual
-		    // const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
-				const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&destination_place_id=&travelmode=driving`;
+		    const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+				// const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&destination_place_id=&travelmode=driving`;
 
 		    window.open(url, "_blank"); // abre en nueva pestaña/app
 		});
