@@ -1053,11 +1053,6 @@ form label {
   -ms-border-radius: 50%;
   border-radius: 50%;
 }
-@media screen and (max-width: 768px) {
-  .heart {
-    display: none;
-  }
-}
 
 .couple-half {
   width: 50%;
@@ -1065,7 +1060,7 @@ form label {
 }
 @media screen and (max-width: 768px) {
   .couple-half {
-    width: 100%;
+    width: 50%;
   }
 }
 .couple-half h3 {
@@ -1175,7 +1170,7 @@ form label {
 }
 
 .fh5co-heading {
-  margin-bottom: 5em;
+  margin-bottom: 3em;
 }
 .fh5co-heading.fh5co-heading-sm {
   margin-bottom: 2em;
