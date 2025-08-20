@@ -1902,3 +1902,7 @@ form label {
   position: relative;
   top: 200px; /* Ajusta la distancia desde arriba */
 }
+
+.btn-agregar {
+  background-color: #9a9a9a !important;
+}

@@ -256,6 +256,13 @@
 								<input type="text" class="form-control" name="restriccion_alimenticia" id="restriccion_alimenticia" placeholder="Restricción Alimenticia">
 							</div>
 						</div>
+
+						<div id="listaInvitados"></div>
+
+						<div class="col-md-4 col-md-offset-4 col-sm-4">
+							<button type="button" class="btn btn-agregar btn-block" id="agregarInvitado">Agregar Invitado</button>
+						</div>
+
 						<div class="col-md-4 col-md-offset-4 col-sm-4">
 							<button type="submit" class="btn btn-default btn-block">Confirmar</button>
 						</div>
@@ -345,6 +352,55 @@
 		    const url = `https://www.google.com/maps/dir/?api=1&destination=${lat2},${lng2}`;
 		    window.open(url, "_blank"); // abre en nueva pestaña/app
 		});
+
+
+		const agregarBtn = document.getElementById('agregarInvitado');
+    const lista = document.getElementById('listaInvitados');
+
+    agregarBtn.addEventListener('click', () => {
+      // Crear un nuevo div
+      const nuevoDiv = document.createElement('div');
+      nuevoDiv.classList.add('col-md-4');
+      nuevoDiv.classList.add('col-md-offset-4');
+      nuevoDiv.classList.add('col-sm-4');
+
+			const divForm = document.createElement('div');
+			divForm.classList.add('form-group');
+
+      // Crear el input
+      const nuevoInput = document.createElement('input');
+      nuevoInput.type = 'text';
+      nuevoInput.classList.add('form-control');
+      nuevoInput.name = 'invitados';
+      nuevoInput.placeholder = 'Nombre y Apellido Invitado';
+      nuevoInput.required = true;
+
+			// Crear el div eliminar
+			const divEliminar = document.createElement('div');
+			divEliminar.classList.add('col-md-2');
+      divEliminar.classList.add('col-sm-2');
+
+      // Botón para eliminar
+      const btnEliminar = document.createElement('button');
+			btnEliminar.classList.add('form-control');
+			btnEliminar.style.backgroundColor = '#c56363';
+      btnEliminar.type = 'button';
+      btnEliminar.textContent = 'Eliminar';
+      btnEliminar.addEventListener('click', () => {
+        lista.removeChild(nuevoDiv);
+        lista.removeChild(divEliminar);
+      });
+
+      // Agregar input y botón al div
+      divForm.appendChild(nuevoInput);
+      divEliminar.appendChild(btnEliminar);
+
+			nuevoDiv.appendChild(divForm);
+
+      // Agregar div a la lista
+      lista.appendChild(nuevoDiv);
+      lista.appendChild(divEliminar);
+    });
 </script>
 
 	</body>
