@@ -1897,3 +1897,8 @@ form label {
     margin-bottom: 100px;
   }
 }
+
+#cuentaBancaria .modal-dialog {
+  position: relative;
+  top: 200px; /* Ajusta la distancia desde arriba */
+}
