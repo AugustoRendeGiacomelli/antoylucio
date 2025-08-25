@@ -1905,7 +1905,7 @@ form label {
 
 #scroll-indicator {
   position: fixed;
-  bottom: 20px;
+  margin-top: 15px;
   left: 50%;
   transform: translateX(-50%);
   font-family: sans-serif;
