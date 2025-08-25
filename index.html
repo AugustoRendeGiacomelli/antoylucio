@@ -69,6 +69,7 @@
 							<a href="https://calendar.app.google/j4evK8Wn3nXXDhh67" target="_blank" class="btn btn-default btn-sm">Guarda la fecha</a>
 						</div>
 					</div>
+					<div id="scroll-indicator">⬇</div>
 				</div>
 			</div>
 		</div>
@@ -345,6 +346,16 @@
 		    const url = `https://www.google.com/maps/dir/?api=1&destination=${lat2},${lng2}`;
 		    window.open(url, "_blank"); // abre en nueva pestaña/app
 		});
+
+		const indicator = document.getElementById("scroll-indicator");
+
+	  window.addEventListener("scroll", () => {
+	    if (window.scrollY > 50) {
+	      indicator.classList.add("hidden");
+	    } else {
+	      indicator.classList.remove("hidden");
+	    }
+	  });
 </script>
 
 	</body>

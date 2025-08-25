@@ -1902,3 +1902,25 @@ form label {
   position: relative;
   top: 200px; /* Ajusta la distancia desde arriba */
 }
+
+#scroll-indicator {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: #555;
+  opacity: 0.7;
+  animation: bounce 1s infinite;
+  cursor: default;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -10px); }
+}
+
+/* Oculto */
+#scroll-indicator.hidden {
+  display: none;
+}
